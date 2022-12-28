@@ -1,0 +1,79 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col">
+            <p class="h3 text-danger fw-bold">NG contacts
+                <a class="btn btn-danger btn-sm" routerLink="/contacts/add">
+                    <i class="fa fa-plus"></i> New</a>
+            </p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            <form>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="row">
+                            <div class="col md-2 lg-2">
+                                <input type="tex" class="form-control" placeholder="Search Use">
+                            </div>
+                            <div class="col md-2">
+                                <input type="submit" class="btn -btn-outline-dark" value="Search">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- loading-->
+<app-spinner *ngIf="loading"></app-spinner>
+<!-- Error msg-->
+<div>
+    <div class="container" *ngIf="!loading && errorMessage">
+        <div class="row">
+            <div class="col">
+                <div class="h4 text-danger fw-bold">{{errorMessage}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <pre>{{contacts | json  }}</pre> --><br>
+<div class="container mt-3" *ngIf="!loading && contacts.length >0">
+    <div class="row">
+        <div class="col-md-6" *ngFor="let contact of contacts">
+            <div class="row">
+                <div class="card list-group-item-danger shadow-lg my-2">
+                    <div class="card-body">
+                        <div class="row align-items-center" style="padding: 13px 0px 0px 0px">
+                            <div class="col-sm-4 align-items-center" style="    text-align: center;
+                            margin-top: 12px;"><img [src]="contact.photo" width="100px" height="100px"></div>
+                            <div class="col-sm-6">
+                                <ul class="list-group ">
+                                    <li class="list-group-item my-1" align_med>Name <span class="fw-bold">{{contact.name}}</span></li>
+                                    <li class="list-group-item">Email <span class="fw-bold">{{contact.email}}</span></li>
+                                    <li class="list-group-item">Mobile: <span class="fw-bold">{{contact.mobile}}</span></li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-2 d-flex flex-column justify-content-center">
+                                <a class="btn btn-warning pt1 my3 align_med" routerLink="/contacts/view/{{contact.id}}">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a class="btn btn-warning pt-1 mt-3 align_med" routerLink="/contacts/edit/{{contact.id}}">
+                                    <i class="fa fa-pen"></i>
+                                </a>
+                                <a class="btn btn-danger align_med" routerLink="/contacts/add/{{contact.id}}">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
